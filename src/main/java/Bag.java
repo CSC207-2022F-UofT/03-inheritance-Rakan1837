@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,6 +15,11 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
+    public String color;
+    public int numberOfContents;
+    public int capacity;
+
+    public ArrayList<String> contents;
 
 
 
@@ -26,7 +33,14 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
+    public Bag(String color, int capacity){
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new ArrayList<>();
 
+
+    }
 
 
 
@@ -37,7 +51,15 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
-
+    public String getColor() {
+        return color;
+    }
+    public int getNumberOfContents(){
+        return numberOfContents;
+    }
+    public int getCapacity(){
+        return capacity;
+    }
 
 
 
@@ -46,10 +68,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
-
-
-
+    public void setColor(String color) {
+        this.color = color;
+    }
     /*
      * TODO: Create a method called addItem that takes in a String
      *       representing an item in the Bag.
@@ -60,7 +81,13 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
+    public void addItem(String item){
+        if (this.getNumberOfContents() < this.getCapacity()) {
+            this.contents.add(item);
+            numberOfContents += 1;
+        }
 
+    }
 
 
 
@@ -75,7 +102,13 @@ public abstract class Bag {
      *
      * @return
      */
+    public String popItem(){
+        String item = this.contents.get(this.contents.size() - 1);
+        this.contents.remove(this.contents.size() - 1);
+        this.numberOfContents -= 1;
+        return item;
 
+    }
 
 
 
@@ -86,7 +119,7 @@ public abstract class Bag {
      * @param n the amount to increase this Bag's capacity by
      */
     public void increaseCapacity(int n) {
-        // TODO: Implement this method.
+        this.capacity += n;
 
     }
 
@@ -109,9 +142,9 @@ public abstract class Bag {
      * It increases the capacity of this Bag.
      *
      * You will need to implement this method in
-     * HandBag.java and CrossbodyBag.java.
+     * java and CrossbodyBag.java.
      *
-     * We recommend you look at HandBag.java first.
+     * We recommend you look at java first.
      */
     public abstract void enhance();
 }
